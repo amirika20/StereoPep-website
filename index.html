@@ -44,7 +44,7 @@
       </p>
       <div class="hero-stats">
         <div class="stat-card">
-          <span class="stat-num">XX,XXX</span>
+          <span class="stat-num">48,789</span>
           <span class="stat-label">Peptides</span>
         </div>
         <div class="stat-card">
@@ -52,12 +52,8 @@
           <span class="stat-label">Tasks</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num">XX</span>
-          <span class="stat-label">Stereoisomers</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-num">XX</span>
-          <span class="stat-label">Datasets</span>
+          <span class="stat-num">8,882</span>
+          <span class="stat-label">Diastereomer Pairs</span>
         </div>
       </div>
       <div class="hero-actions">
@@ -105,50 +101,39 @@
     </div>
   </section>
 
-  <!-- ── Datasets Summary ───────────────────────────────────────────── -->
+  <!-- ── Dataset Summary ───────────────────────────────────────────── -->
   <section class="section section-white" id="datasets">
     <div class="container">
       <h2 class="section-title">Dataset Overview</h2>
       <p class="section-desc">
-        StereoPep includes multiple sub-datasets spanning different biological contexts and property types.
+        StereoPep is a single curated dataset with experimentally measured retention times,
+        partitioned into train/validation and test splits with diastereomer pairs tracked separately.
         See the <a href="dataset.html">Dataset page</a> for full details.
       </p>
       <div class="table-wrapper">
         <table class="data-table">
           <thead>
             <tr>
-              <th>Dataset</th>
-              <th>Task Type</th>
-              <th>Compounds</th>
-              <th>Task(s)</th>
-              <th>Metric</th>
-              <th>Reference</th>
+              <th>Split</th>
+              <th>Peptides</th>
+              <th>Diastereomer Pairs</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><a href="dataset.html">Dataset A</a></td>
-              <td><span class="tag tag-class">Classification</span></td>
-              <td>—</td>
-              <td>—</td>
-              <td>AUROC</td>
-              <td>—</td>
+              <td>Train + Validation</td>
+              <td>46,063</td>
+              <td>8,339</td>
             </tr>
             <tr>
-              <td><a href="dataset.html">Dataset B</a></td>
-              <td><span class="tag tag-reg">Regression</span></td>
-              <td>—</td>
-              <td>—</td>
-              <td>RMSE</td>
-              <td>—</td>
+              <td>Test</td>
+              <td>2,726</td>
+              <td>543</td>
             </tr>
             <tr>
-              <td><a href="dataset.html">Dataset C</a></td>
-              <td><span class="tag tag-class">Classification</span></td>
-              <td>—</td>
-              <td>—</td>
-              <td>AUROC</td>
-              <td>—</td>
+              <td><strong>Total</strong></td>
+              <td><strong>48,789</strong></td>
+              <td><strong>8,882</strong></td>
             </tr>
           </tbody>
         </table>

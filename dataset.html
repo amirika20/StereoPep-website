@@ -59,69 +59,37 @@
 
   <section class="section section-light">
     <div class="container">
-      <h2 class="section-title">Sub-datasets</h2>
+      <h2 class="section-title">Dataset</h2>
 
-      <!-- Dataset A -->
       <div class="dataset-entry">
         <div class="dataset-header">
-          <h3>Dataset A</h3>
-          <div class="dataset-tags">
-            <span class="tag tag-class">Classification</span>
-            <span class="tag tag-bio">Biological Activity</span>
-          </div>
-        </div>
-        <p>
-          Description of Dataset A. Include information about where the data comes from,
-          what the labels represent, and what makes this sub-dataset relevant for stereoisomer research.
-        </p>
-        <div class="table-wrapper">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Compounds</td><td>—</td></tr>
-              <tr><td>Tasks</td><td>—</td></tr>
-              <tr><td>Task Type</td><td>Binary Classification</td></tr>
-              <tr><td>Metric</td><td>AUROC</td></tr>
-              <tr><td>Split</td><td>Scaffold / Random</td></tr>
-              <tr><td>Reference</td><td><a href="#">Citation</a></td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Dataset B -->
-      <div class="dataset-entry">
-        <div class="dataset-header">
-          <h3>Dataset B</h3>
+          <h3>StereoPep</h3>
           <div class="dataset-tags">
             <span class="tag tag-reg">Regression</span>
-            <span class="tag tag-phys">Physicochemical</span>
+            <span class="tag tag-phys">Retention Time</span>
           </div>
         </div>
         <p>
-          Description of Dataset B. Include information about where the data comes from,
-          what the labels represent, and the range of property values.
+          StereoPep is a benchmark dataset of peptides with experimentally measured retention times,
+          explicitly designed to evaluate stereoisomer-aware models. It includes paired D/L-Phe
+          diastereomers to probe whether models can distinguish chiral variants that differ only in
+          the configuration of a single amino acid.
         </p>
         <div class="table-wrapper">
           <table class="data-table">
             <thead>
               <tr>
                 <th>Property</th>
-                <th>Value</th>
+                <th>Train / Val</th>
+                <th>Test</th>
+                <th>Total</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Compounds</td><td>—</td></tr>
-              <tr><td>Tasks</td><td>—</td></tr>
-              <tr><td>Task Type</td><td>Regression</td></tr>
-              <tr><td>Metric</td><td>RMSE</td></tr>
-              <tr><td>Split</td><td>Random</td></tr>
-              <tr><td>Reference</td><td><a href="#">Citation</a></td></tr>
+              <tr><td>Peptides</td><td>46,063</td><td>2,726</td><td>48,789</td></tr>
+              <tr><td>Diastereomer Pairs</td><td>8,339</td><td>543</td><td>8,882</td></tr>
+              <tr><td>Tasks</td><td colspan="3">5 (point mutations, diastereomer change, diastereomer addition, generation, retention time prediction)</td></tr>
+              <tr><td>Primary Metric</td><td colspan="3">Pearson <em>r</em></td></tr>
             </tbody>
           </table>
         </div>

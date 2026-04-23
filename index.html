@@ -48,7 +48,7 @@
           <span class="stat-label">Peptides</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num">XX</span>
+          <span class="stat-num">5</span>
           <span class="stat-label">Tasks</span>
         </div>
         <div class="stat-card">
@@ -89,7 +89,7 @@
         <div class="card">
           <div class="card-icon">📊</div>
           <h3>Multiple Tasks</h3>
-          <p>Covers classification and regression tasks spanning biological activity, toxicity, and physicochemical properties.</p>
+          <p>Covers five tasks: point mutations prediction, diastereomer change, diastereomer addition, generation, and retention time prediction.</p>
         </div>
         <div class="card">
           <div class="card-icon">⚖️</div>
@@ -164,38 +164,43 @@
         State-of-the-art results on StereoPep. Submit your results to be listed here.
         Full results are on the <a href="leaderboard.html">Leaderboard page</a>.
       </p>
+      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;">Retention time prediction — ranked by Pearson <em>r</em> ↑. Bold = best per column.</p>
       <div class="table-wrapper">
         <table class="data-table">
           <thead>
             <tr>
               <th>#</th>
               <th>Model</th>
-              <th>Dataset A (AUROC)</th>
-              <th>Dataset B (RMSE)</th>
-              <th>Paper</th>
+              <th>Pearson <em>r</em> ↑</th>
+              <th>Spearman <em>ρ</em> ↑</th>
+              <th>RMSE ↓</th>
+              <th>MAE ↓</th>
             </tr>
           </thead>
           <tbody>
             <tr class="rank-1">
               <td>1</td>
-              <td>Model Name</td>
-              <td>—</td>
-              <td>—</td>
-              <td><a href="#">Link</a></td>
+              <td>DeepLC</td>
+              <td><strong>0.804 ± 0.013</strong></td>
+              <td><strong>0.849 ± 0.008</strong></td>
+              <td>6.692 ± 0.263</td>
+              <td>4.644 ± 0.214</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>Model Name</td>
-              <td>—</td>
-              <td>—</td>
-              <td><a href="#">Link</a></td>
+              <td>GIN</td>
+              <td>0.788 ± 0.014</td>
+              <td>0.838 ± 0.015</td>
+              <td><strong>6.649 ± 0.300</strong></td>
+              <td><strong>4.474 ± 0.177</strong></td>
             </tr>
             <tr>
               <td>3</td>
-              <td>Model Name</td>
-              <td>—</td>
-              <td>—</td>
-              <td><a href="#">Link</a></td>
+              <td>ESM3-small</td>
+              <td>0.787 ± 0.008</td>
+              <td>0.826 ± 0.007</td>
+              <td>7.981 ± 0.539</td>
+              <td>5.622 ± 0.439</td>
             </tr>
           </tbody>
         </table>

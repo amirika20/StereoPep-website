@@ -36,107 +36,256 @@
       <div class="lb-meta">
         <p>
           Want to add your model? Open a pull request on
-          <a href="#" target="_blank" rel="noopener">GitHub</a> with your results.
+          <a href="https://github.com/amirika20/StereoPep-Benchmarks" target="_blank" rel="noopener">GitHub</a> with your results.
         </p>
-        <div class="lb-filters">
-          <button class="filter-btn active" data-filter="all">All Datasets</button>
-          <button class="filter-btn" data-filter="dataset-a">Dataset A</button>
-          <button class="filter-btn" data-filter="dataset-b">Dataset B</button>
-        </div>
       </div>
 
-      <!-- Dataset A Leaderboard -->
-      <div class="lb-section" id="lb-dataset-a">
-        <h2 class="section-title">Dataset A — Classification (AUROC ↑)</h2>
+      <!-- Retention Time Prediction Leaderboard -->
+      <div class="lb-section" id="lb-retention-time">
+        <h2 class="section-title">Retention Time Prediction — Regression</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+          Mean ± std over seeds. Bold denotes best per column. ↑ higher is better, ↓ lower is better.
+        </p>
         <div class="table-wrapper">
           <table class="data-table lb-table">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Model</th>
-                <th>Architecture</th>
-                <th>Test AUROC</th>
-                <th>Val AUROC</th>
-                <th>Year</th>
-                <th>Paper</th>
+                <th>Pearson <em>r</em> ↑</th>
+                <th>Spearman <em>ρ</em> ↑</th>
+                <th>Kendall <em>τ</em> ↑</th>
+                <th><em>R</em>² ↑</th>
+                <th>RMSE ↓</th>
+                <th>MAE ↓</th>
+                <th>Mean Error</th>
               </tr>
             </thead>
             <tbody>
               <tr class="rank-1">
                 <td><span class="rank-badge gold">1</span></td>
-                <td>Model Name</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>20XX</td>
-                <td><a href="#">Link</a></td>
+                <td>DeepLC</td>
+                <td><strong>0.804 ± 0.013</strong></td>
+                <td><strong>0.849 ± 0.008</strong></td>
+                <td><strong>0.671 ± 0.011</strong></td>
+                <td>0.579 ± 0.033</td>
+                <td>6.692 ± 0.263</td>
+                <td>4.644 ± 0.214</td>
+                <td>−2.477 ± 0.592</td>
               </tr>
               <tr class="rank-2">
                 <td><span class="rank-badge silver">2</span></td>
-                <td>Model Name</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>20XX</td>
-                <td><a href="#">Link</a></td>
+                <td>GIN</td>
+                <td>0.788 ± 0.014</td>
+                <td>0.838 ± 0.015</td>
+                <td>0.661 ± 0.016</td>
+                <td><strong>0.584 ± 0.038</strong></td>
+                <td><strong>6.649 ± 0.300</strong></td>
+                <td><strong>4.474 ± 0.177</strong></td>
+                <td>−1.798 ± 0.634</td>
               </tr>
               <tr class="rank-3">
                 <td><span class="rank-badge bronze">3</span></td>
-                <td>Model Name</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>20XX</td>
-                <td><a href="#">Link</a></td>
+                <td>ESM3-small</td>
+                <td>0.787 ± 0.008</td>
+                <td>0.826 ± 0.007</td>
+                <td>0.638 ± 0.009</td>
+                <td>0.399 ± 0.080</td>
+                <td>7.981 ± 0.539</td>
+                <td>5.622 ± 0.439</td>
+                <td>−3.996 ± 1.071</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>ESMC-300M</td>
+                <td>0.770 ± 0.017</td>
+                <td>0.828 ± 0.017</td>
+                <td>0.644 ± 0.019</td>
+                <td>0.406 ± 0.034</td>
+                <td>7.948 ± 0.227</td>
+                <td>5.468 ± 0.195</td>
+                <td>−4.088 ± 0.301</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>DeepRT-CapsNet</td>
+                <td>0.767 ± 0.022</td>
+                <td>0.804 ± 0.020</td>
+                <td>0.613 ± 0.023</td>
+                <td>0.521 ± 0.038</td>
+                <td>7.140 ± 0.283</td>
+                <td>5.103 ± 0.207</td>
+                <td>−2.028 ± 0.807</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>ESMC-600M</td>
+                <td>0.762 ± 0.012</td>
+                <td>0.826 ± 0.009</td>
+                <td>0.642 ± 0.010</td>
+                <td>0.321 ± 0.032</td>
+                <td>8.501 ± 0.198</td>
+                <td>6.023 ± 0.198</td>
+                <td>−4.942 ± 0.366</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Transformer</td>
+                <td>0.742 ± 0.033</td>
+                <td>0.794 ± 0.028</td>
+                <td>0.605 ± 0.031</td>
+                <td>0.513 ± 0.053</td>
+                <td>7.188 ± 0.395</td>
+                <td>5.105 ± 0.320</td>
+                <td><strong>−1.617 ± 0.901</strong></td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Pretrained GIN</td>
+                <td>0.725 ± 0.015</td>
+                <td>0.778 ± 0.016</td>
+                <td>0.591 ± 0.016</td>
+                <td>0.460 ± 0.027</td>
+                <td>7.582 ± 0.189</td>
+                <td>5.234 ± 0.150</td>
+                <td>−2.619 ± 0.236</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Morgan FP MLP</td>
+                <td>0.506 ± 0.021</td>
+                <td>0.534 ± 0.026</td>
+                <td>0.377 ± 0.019</td>
+                <td>0.173 ± 0.032</td>
+                <td>9.384 ± 0.181</td>
+                <td>6.866 ± 0.155</td>
+                <td>−1.745 ± 0.409</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Dataset B Leaderboard -->
-      <div class="lb-section" id="lb-dataset-b">
-        <h2 class="section-title">Dataset B — Regression (RMSE ↓)</h2>
+      <!-- Diastereomer Pair Performance -->
+      <div class="lb-section" id="lb-diastereomer" style="margin-top: 3rem;">
+        <h2 class="section-title">Diastereomer Pair Performance — D/L-Phe Pairs</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+          Mean ± std over seeds on the test set. Bold denotes best per column. ↑ higher is better, ↓ lower is better.
+        </p>
         <div class="table-wrapper">
           <table class="data-table lb-table">
             <thead>
               <tr>
                 <th>#</th>
                 <th>Model</th>
-                <th>Architecture</th>
-                <th>Test RMSE</th>
-                <th>Val RMSE</th>
-                <th>Year</th>
-                <th>Paper</th>
+                <th>Pairwise Acc. ↑</th>
+                <th>Δ Pearson ↑</th>
+                <th>Δ Spearman ↑</th>
+                <th>Δ Kendall ↑</th>
+                <th>Δ AUC ↑</th>
+                <th>Δ RMSE ↓</th>
+                <th>Δ MAE ↓</th>
               </tr>
             </thead>
             <tbody>
               <tr class="rank-1">
                 <td><span class="rank-badge gold">1</span></td>
-                <td>Model Name</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>20XX</td>
-                <td><a href="#">Link</a></td>
+                <td>GIN</td>
+                <td><strong>0.665 ± 0.035</strong></td>
+                <td><strong>0.107 ± 0.145</strong></td>
+                <td><strong>0.136 ± 0.156</strong></td>
+                <td><strong>0.103 ± 0.108</strong></td>
+                <td>0.539 ± 0.095</td>
+                <td>7.238 ± 0.430</td>
+                <td>5.208 ± 0.391</td>
               </tr>
               <tr class="rank-2">
                 <td><span class="rank-badge silver">2</span></td>
-                <td>Model Name</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>20XX</td>
-                <td><a href="#">Link</a></td>
+                <td>Pretrained GIN</td>
+                <td>0.646 ± 0.013</td>
+                <td>0.087 ± 0.041</td>
+                <td>0.134 ± 0.061</td>
+                <td>0.095 ± 0.045</td>
+                <td><strong>0.580 ± 0.043</strong></td>
+                <td><strong>7.138 ± 0.061</strong></td>
+                <td><strong>5.119 ± 0.078</strong></td>
               </tr>
               <tr class="rank-3">
                 <td><span class="rank-badge bronze">3</span></td>
-                <td>Model Name</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>20XX</td>
-                <td><a href="#">Link</a></td>
+                <td>DeepLC</td>
+                <td>0.624 ± 0.083</td>
+                <td>0.009 ± 0.107</td>
+                <td>0.026 ± 0.128</td>
+                <td>0.029 ± 0.090</td>
+                <td>0.471 ± 0.076</td>
+                <td>7.243 ± 0.231</td>
+                <td>5.331 ± 0.269</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Morgan FP MLP</td>
+                <td>0.619 ± 0.023</td>
+                <td>−0.038 ± 0.050</td>
+                <td>−0.028 ± 0.042</td>
+                <td>−0.023 ± 0.029</td>
+                <td>0.524 ± 0.024</td>
+                <td>7.789 ± 0.186</td>
+                <td>5.639 ± 0.123</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Transformer</td>
+                <td>0.602 ± 0.062</td>
+                <td>0.100 ± 0.106</td>
+                <td>0.099 ± 0.127</td>
+                <td>0.065 ± 0.085</td>
+                <td>0.556 ± 0.090</td>
+                <td>7.360 ± 0.452</td>
+                <td>5.406 ± 0.428</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>ESM3-small</td>
+                <td>0.600 ± 0.040</td>
+                <td>0.061 ± 0.070</td>
+                <td>0.063 ± 0.084</td>
+                <td>0.042 ± 0.055</td>
+                <td>0.515 ± 0.048</td>
+                <td>7.319 ± 0.078</td>
+                <td>5.512 ± 0.086</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>ESMC-300M</td>
+                <td>0.600 ± 0.026</td>
+                <td>0.086 ± 0.045</td>
+                <td>0.125 ± 0.059</td>
+                <td>0.087 ± 0.040</td>
+                <td>0.547 ± 0.047</td>
+                <td>7.213 ± 0.069</td>
+                <td>5.327 ± 0.095</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>ESMC-600M</td>
+                <td>0.563 ± 0.024</td>
+                <td>−0.029 ± 0.041</td>
+                <td>−0.029 ± 0.038</td>
+                <td>−0.020 ± 0.025</td>
+                <td>0.451 ± 0.023</td>
+                <td>7.342 ± 0.060</td>
+                <td>5.491 ± 0.050</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>DeepRT-CapsNet</td>
+                <td>0.434 ± 0.063</td>
+                <td>−0.071 ± 0.065</td>
+                <td>−0.068 ± 0.052</td>
+                <td>−0.047 ± 0.038</td>
+                <td>0.441 ± 0.025</td>
+                <td>7.894 ± 0.386</td>
+                <td>6.017 ± 0.383</td>
               </tr>
             </tbody>
           </table>

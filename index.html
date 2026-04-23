@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StereoPep — Stereoisomer Peptide Benchmark Dataset</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Navigation ────────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="index.html">
+        <span class="logo-accent">Stereo</span>Pep
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="dataset.html">Dataset</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+          <a href="#" class="btn-nav" target="_blank" rel="noopener">
+            Paper ↗
+          </a>
+        </li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <!-- ── Hero ──────────────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="hero-badge">Benchmark Dataset</div>
+      <h1 class="hero-title">
+        <span class="accent">StereoPep</span>
+      </h1>
+      <p class="hero-subtitle">
+        A comprehensive benchmark dataset for stereoisomer-aware peptide property prediction,
+        enabling fair evaluation of machine learning models on chiral peptide sequences.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-num">XX,XXX</span>
+          <span class="stat-label">Peptides</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">XX</span>
+          <span class="stat-label">Tasks</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">XX</span>
+          <span class="stat-label">Stereoisomers</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">XX</span>
+          <span class="stat-label">Datasets</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <a href="dataset.html" class="btn btn-primary">Explore Dataset</a>
+        <a href="#" class="btn btn-secondary" target="_blank" rel="noopener">Download</a>
+        <a href="#" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" class="btn btn-outline" target="_blank" rel="noopener">Paper</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Overview ──────────────────────────────────────────────────── -->
+  <section class="section section-light" id="overview">
+    <div class="container">
+      <h2 class="section-title">What is StereoPep?</h2>
+      <p class="section-desc">
+        StereoPep is a curated benchmark dataset designed to study the effect of stereochemistry
+        on peptide properties. Stereoisomers — molecules with identical connectivity but different
+        spatial arrangements — can have dramatically different biological activities. StereoPep
+        provides a rigorous testbed for models that aim to distinguish and predict the properties
+        of chiral peptide sequences.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">🧬</div>
+          <h3>Stereoisomer-Aware</h3>
+          <p>Carefully curated pairs of L/D amino acid stereoisomers with experimentally measured properties.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Multiple Tasks</h3>
+          <p>Covers classification and regression tasks spanning biological activity, toxicity, and physicochemical properties.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⚖️</div>
+          <h3>Fair Splits</h3>
+          <p>Standardized train/validation/test splits designed to prevent data leakage and enable reproducible benchmarking.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔬</div>
+          <h3>Experimental Data</h3>
+          <p>All labels derived from wet-lab experimental measurements, not computational predictions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Datasets Summary ───────────────────────────────────────────── -->
+  <section class="section section-white" id="datasets">
+    <div class="container">
+      <h2 class="section-title">Dataset Overview</h2>
+      <p class="section-desc">
+        StereoPep includes multiple sub-datasets spanning different biological contexts and property types.
+        See the <a href="dataset.html">Dataset page</a> for full details.
+      </p>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Dataset</th>
+              <th>Task Type</th>
+              <th>Compounds</th>
+              <th>Task(s)</th>
+              <th>Metric</th>
+              <th>Reference</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="dataset.html">Dataset A</a></td>
+              <td><span class="tag tag-class">Classification</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>AUROC</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><a href="dataset.html">Dataset B</a></td>
+              <td><span class="tag tag-reg">Regression</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>RMSE</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><a href="dataset.html">Dataset C</a></td>
+              <td><span class="tag tag-class">Classification</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>AUROC</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Leaderboard Preview ───────────────────────────────────────── -->
+  <section class="section section-light" id="leaderboard-preview">
+    <div class="container">
+      <h2 class="section-title">Leaderboard</h2>
+      <p class="section-desc">
+        State-of-the-art results on StereoPep. Submit your results to be listed here.
+        Full results are on the <a href="leaderboard.html">Leaderboard page</a>.
+      </p>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Model</th>
+              <th>Dataset A (AUROC)</th>
+              <th>Dataset B (RMSE)</th>
+              <th>Paper</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="rank-1">
+              <td>1</td>
+              <td>Model Name</td>
+              <td>—</td>
+              <td>—</td>
+              <td><a href="#">Link</a></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Model Name</td>
+              <td>—</td>
+              <td>—</td>
+              <td><a href="#">Link</a></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Model Name</td>
+              <td>—</td>
+              <td>—</td>
+              <td><a href="#">Link</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="text-align:center; margin-top: 1.5rem;">
+        <a href="leaderboard.html" class="btn btn-primary">View Full Leaderboard</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Citation ───────────────────────────────────────────────────── -->
+  <section class="section section-white" id="citation">
+    <div class="container">
+      <h2 class="section-title">Citation</h2>
+      <p class="section-desc">
+        If you use StereoPep in your research, please cite our paper:
+      </p>
+      <pre class="code-block"><code>@article{stereoppep2024,
+  title   = {StereoPep: A Benchmark Dataset for Stereoisomer-Aware Peptide Property Prediction},
+  author  = {Author, First and Author, Second and Author, Third},
+  journal = {Journal Name},
+  year    = {2024},
+  url     = {https://arxiv.org/abs/XXXX.XXXXX}
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-accent">Stereo</span>Pep
+        <p>A stereoisomer-aware peptide benchmark dataset.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">Paper</a></li>
+            <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Download</a></li>
+            <li><a href="#" target="_blank" rel="noopener">arXiv</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StereoPep. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

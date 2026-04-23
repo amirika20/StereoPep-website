@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard — StereoPep</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="index.html"><span class="logo-accent">Stereo</span>Pep</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dataset.html">Dataset</a></li>
+        <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#" class="btn-nav" target="_blank" rel="noopener">Paper ↗</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Leaderboard</h1>
+      <p>Benchmarking state-of-the-art models on StereoPep. Results are reported as mean ± std over multiple runs.</p>
+    </div>
+  </div>
+
+  <section class="section section-white">
+    <div class="container">
+      <div class="lb-meta">
+        <p>
+          Want to add your model? Open a pull request on
+          <a href="#" target="_blank" rel="noopener">GitHub</a> with your results.
+        </p>
+        <div class="lb-filters">
+          <button class="filter-btn active" data-filter="all">All Datasets</button>
+          <button class="filter-btn" data-filter="dataset-a">Dataset A</button>
+          <button class="filter-btn" data-filter="dataset-b">Dataset B</button>
+        </div>
+      </div>
+
+      <!-- Dataset A Leaderboard -->
+      <div class="lb-section" id="lb-dataset-a">
+        <h2 class="section-title">Dataset A — Classification (AUROC ↑)</h2>
+        <div class="table-wrapper">
+          <table class="data-table lb-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Model</th>
+                <th>Architecture</th>
+                <th>Test AUROC</th>
+                <th>Val AUROC</th>
+                <th>Year</th>
+                <th>Paper</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="rank-1">
+                <td><span class="rank-badge gold">1</span></td>
+                <td>Model Name</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>20XX</td>
+                <td><a href="#">Link</a></td>
+              </tr>
+              <tr class="rank-2">
+                <td><span class="rank-badge silver">2</span></td>
+                <td>Model Name</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>20XX</td>
+                <td><a href="#">Link</a></td>
+              </tr>
+              <tr class="rank-3">
+                <td><span class="rank-badge bronze">3</span></td>
+                <td>Model Name</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>20XX</td>
+                <td><a href="#">Link</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Dataset B Leaderboard -->
+      <div class="lb-section" id="lb-dataset-b">
+        <h2 class="section-title">Dataset B — Regression (RMSE ↓)</h2>
+        <div class="table-wrapper">
+          <table class="data-table lb-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Model</th>
+                <th>Architecture</th>
+                <th>Test RMSE</th>
+                <th>Val RMSE</th>
+                <th>Year</th>
+                <th>Paper</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="rank-1">
+                <td><span class="rank-badge gold">1</span></td>
+                <td>Model Name</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>20XX</td>
+                <td><a href="#">Link</a></td>
+              </tr>
+              <tr class="rank-2">
+                <td><span class="rank-badge silver">2</span></td>
+                <td>Model Name</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>20XX</td>
+                <td><a href="#">Link</a></td>
+              </tr>
+              <tr class="rank-3">
+                <td><span class="rank-badge bronze">3</span></td>
+                <td>Model Name</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>20XX</td>
+                <td><a href="#">Link</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-accent">Stereo</span>Pep
+        <p>A stereoisomer-aware peptide benchmark dataset.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">Paper</a></li>
+            <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Download</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StereoPep. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — StereoPep</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="index.html"><span class="logo-accent">Stereo</span>Pep</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dataset.html">Dataset</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="#" class="btn-nav" target="_blank" rel="noopener">Paper ↗</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>About</h1>
+      <p>Team, motivation, and background behind StereoPep.</p>
+    </div>
+  </div>
+
+  <section class="section section-white">
+    <div class="container narrow">
+      <h2 class="section-title">Motivation</h2>
+      <p>
+        Peptide drugs are an important and growing class of therapeutics. However, machine learning models
+        for peptide property prediction often ignore stereochemistry, treating L- and D-amino acid variants
+        as identical. In reality, stereoisomers can have profoundly different biological activities, stability,
+        and pharmacokinetic profiles.
+      </p>
+      <p>
+        StereoPep was created to close this gap — providing a rigorous benchmark that forces models to account
+        for chirality when predicting peptide properties. We hope it will drive the development of
+        stereoisomer-aware molecular representations and models.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 3rem;">Team</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">👤</div>
+          <h4>Author Name</h4>
+          <p>Institution</p>
+          <a href="#">Contact</a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👤</div>
+          <h4>Author Name</h4>
+          <p>Institution</p>
+          <a href="#">Contact</a>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">👤</div>
+          <h4>Author Name</h4>
+          <p>Institution</p>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+
+      <h2 class="section-title" style="margin-top: 3rem;">Citation</h2>
+      <p>If you use StereoPep, please cite:</p>
+      <pre class="code-block"><code>@article{stereoppep2024,
+  title   = {StereoPep: A Benchmark Dataset for Stereoisomer-Aware Peptide Property Prediction},
+  author  = {Author, First and Author, Second and Author, Third},
+  journal = {Journal Name},
+  year    = {2024},
+  url     = {https://arxiv.org/abs/XXXX.XXXXX}
+}</code></pre>
+
+      <h2 class="section-title" style="margin-top: 3rem;">License</h2>
+      <p>
+        The StereoPep dataset is released under the
+        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 (CC BY 4.0)</a>
+        license. The code is available under the MIT License.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 3rem;">Contact</h2>
+      <p>
+        For questions, bug reports, or contributions, please open an issue on
+        <a href="#" target="_blank" rel="noopener">GitHub</a> or contact us at
+        <a href="mailto:contact@example.com">contact@example.com</a>.
+      </p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-accent">Stereo</span>Pep
+        <p>A stereoisomer-aware peptide benchmark dataset.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">Paper</a></li>
+            <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Download</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StereoPep. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

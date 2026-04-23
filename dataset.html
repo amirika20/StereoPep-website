@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dataset — StereoPep</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="index.html"><span class="logo-accent">Stereo</span>Pep</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="dataset.html" class="active">Dataset</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#" class="btn-nav" target="_blank" rel="noopener">Paper ↗</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>Dataset</h1>
+      <p>Detailed information about the StereoPep sub-datasets, splits, and download instructions.</p>
+    </div>
+  </div>
+
+  <section class="section section-white">
+    <div class="container">
+      <h2 class="section-title">Download</h2>
+      <p class="section-desc">
+        StereoPep datasets are freely available. Choose a format below:
+      </p>
+      <div class="download-grid">
+        <a href="#" class="download-card">
+          <span class="dl-icon">📦</span>
+          <span class="dl-label">Full Dataset</span>
+          <span class="dl-format">CSV / ZIP</span>
+        </a>
+        <a href="#" class="download-card">
+          <span class="dl-icon">🐍</span>
+          <span class="dl-label">Python Package</span>
+          <span class="dl-format">pip install stereoppep</span>
+        </a>
+        <a href="#" class="download-card">
+          <span class="dl-icon">🐙</span>
+          <span class="dl-label">GitHub</span>
+          <span class="dl-format">Source + Scripts</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="section-title">Sub-datasets</h2>
+
+      <!-- Dataset A -->
+      <div class="dataset-entry">
+        <div class="dataset-header">
+          <h3>Dataset A</h3>
+          <div class="dataset-tags">
+            <span class="tag tag-class">Classification</span>
+            <span class="tag tag-bio">Biological Activity</span>
+          </div>
+        </div>
+        <p>
+          Description of Dataset A. Include information about where the data comes from,
+          what the labels represent, and what makes this sub-dataset relevant for stereoisomer research.
+        </p>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Compounds</td><td>—</td></tr>
+              <tr><td>Tasks</td><td>—</td></tr>
+              <tr><td>Task Type</td><td>Binary Classification</td></tr>
+              <tr><td>Metric</td><td>AUROC</td></tr>
+              <tr><td>Split</td><td>Scaffold / Random</td></tr>
+              <tr><td>Reference</td><td><a href="#">Citation</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Dataset B -->
+      <div class="dataset-entry">
+        <div class="dataset-header">
+          <h3>Dataset B</h3>
+          <div class="dataset-tags">
+            <span class="tag tag-reg">Regression</span>
+            <span class="tag tag-phys">Physicochemical</span>
+          </div>
+        </div>
+        <p>
+          Description of Dataset B. Include information about where the data comes from,
+          what the labels represent, and the range of property values.
+        </p>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Compounds</td><td>—</td></tr>
+              <tr><td>Tasks</td><td>—</td></tr>
+              <tr><td>Task Type</td><td>Regression</td></tr>
+              <tr><td>Metric</td><td>RMSE</td></tr>
+              <tr><td>Split</td><td>Random</td></tr>
+              <tr><td>Reference</td><td><a href="#">Citation</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section-white">
+    <div class="container">
+      <h2 class="section-title">Data Format</h2>
+      <p class="section-desc">Each dataset is provided as a CSV file with the following columns:</p>
+      <pre class="code-block"><code>smiles,sequence,stereo_label,property_1,property_2,...,split
+CC[C@@H](N)C(=O)...,ACDEF,L,0.82,1.45,...,train
+CC[C@H](N)C(=O)...,ACDEF,D,0.21,1.45,...,train</code></pre>
+      <ul class="feature-list">
+        <li><strong>smiles</strong> — Canonical SMILES string encoding full stereochemistry</li>
+        <li><strong>sequence</strong> — Amino acid sequence (one-letter code)</li>
+        <li><strong>stereo_label</strong> — L (natural) or D (non-natural) chirality</li>
+        <li><strong>property_*</strong> — Experimental property values (NaN if not measured)</li>
+        <li><strong>split</strong> — Assigned split: train / valid / test</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-accent">Stereo</span>Pep
+        <p>A stereoisomer-aware peptide benchmark dataset.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Site</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="dataset.html">Dataset</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">Paper</a></li>
+            <li><a href="#" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="#" target="_blank" rel="noopener">Download</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 StereoPep. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

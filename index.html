@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StereoPep — Stereoisomer Peptide Benchmark Dataset</title>
+  <title>StereoPep — Stereochemistry-aware Peptide Benchmark Dataset</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -39,8 +39,8 @@
         <span class="accent">StereoPep</span>
       </h1>
       <p class="hero-subtitle">
-        A comprehensive benchmark dataset for stereoisomer-aware peptide property prediction,
-        enabling fair evaluation of machine learning models on chiral peptide sequences.
+        A comprehensive benchmark dataset for stereochemistry-aware peptide property prediction,
+        enabling fair evaluation of machine learning models on diastereomer peptide sequences.
       </p>
       <div class="hero-stats">
         <div class="stat-card">
@@ -71,21 +71,21 @@
       <h2 class="section-title">What is StereoPep?</h2>
       <p class="section-desc">
         StereoPep is a curated benchmark dataset designed to study the effect of stereochemistry
-        on peptide properties. Stereoisomers — molecules with identical connectivity but different
-        spatial arrangements — can have dramatically different biological activities. StereoPep
+        on peptide properties. Molecules with identical connectivity but different
+        spatial arrangements can have dramatically different biological activities. StereoPep
         provides a rigorous testbed for models that aim to distinguish and predict the properties
         of chiral peptide sequences.
       </p>
       <div class="card-grid">
         <div class="card">
           <div class="card-icon">🧬</div>
-          <h3>Stereoisomer-Aware</h3>
+          <h3>Stereochemistry-Aware</h3>
           <p>Carefully curated pairs of L/D amino acid stereoisomers with experimentally measured properties.</p>
         </div>
         <div class="card">
           <div class="card-icon">📊</div>
           <h3>Multiple Tasks</h3>
-          <p>Covers five tasks: point mutations prediction, diastereomer change, diastereomer addition, generation, and retention time prediction.</p>
+          <p>Covers four tasks: overall retention time prediction, point mutations prediction, diastereomer pairs, and additiona mutation prediction.</p>
         </div>
         <div class="card">
           <div class="card-icon">⚖️</div>

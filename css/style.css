@@ -554,6 +554,132 @@ p { color: var(--text-muted); line-height: 1.75; }
 
 .footer-bottom p { font-size: .8rem; color: #475569; }
 
+/* ── Diastereomer teaser banner ───────────────────────────────────── */
+.diast-teaser {
+  background: #eff6ff;
+  border-top: 1px solid #bfdbfe;
+  border-bottom: 1px solid #bfdbfe;
+  padding: 0.8rem 0;
+}
+
+.diast-teaser-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.diast-teaser-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+.diast-teaser p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.diast-teaser a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ── Molecular Viewer ─────────────────────────────────────────────── */
+.mol-viewer-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.mol-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 460px;
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+.mol-card-ll { border-top: 3px solid #2563eb; }
+.mol-card-ld { border-top: 3px solid #7c3aed; }
+
+.mol-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.mol-badge {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+}
+
+.mol-badge-ll { background: #dbeafe; color: #1d4ed8; }
+.mol-badge-ld { background: #ede9fe; color: #6d28d9; }
+
+.mol-config {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.mol-canvas {
+  width: 100%;
+  height: 320px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.mol-loading,
+.mol-error {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 1rem;
+  pointer-events: none;
+}
+
+.mol-hint {
+  margin-top: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.mol-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  align-self: center;
+  flex-shrink: 0;
+  padding: 0 0.25rem;
+}
+
+.mol-note {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
 /* ── Responsive ───────────────────────────────────────────────────── */
 @media (max-width: 700px) {
   .nav-links { display: none; flex-direction: column; gap: .5rem; }
@@ -580,4 +706,7 @@ p { color: var(--text-muted); line-height: 1.75; }
   .footer-links { gap: 2rem; }
 
   .lb-meta { flex-direction: column; align-items: flex-start; }
+
+  .mol-canvas { height: 240px; }
+  .mol-vs { padding: 0.25rem 0; }
 }

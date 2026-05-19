@@ -39,7 +39,7 @@
         <span class="accent">StereoPep</span>
       </h1>
       <p class="hero-subtitle">
-        A comprehensive benchmark dataset for stereochemistry-aware peptide property prediction,
+        A benchmark dataset for stereochemistry-aware peptide property prediction,
         enabling fair evaluation of machine learning models on diastereomer peptide sequences.
       </p>
       <div class="hero-stats">
@@ -65,6 +65,16 @@
     </div>
   </header>
 
+  <!-- ── Diastereomer teaser ───────────────────────────────────────── -->
+  <div class="diast-teaser">
+    <div class="container">
+      <div class="diast-teaser-inner">
+        <span class="diast-teaser-icon">🔬</span>
+        <p>New to diastereomers? <a href="about.html#diastereomers-3d">Explore interactive 3D models</a> to see how diastereomer pairs differ in structure.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- ── Overview ──────────────────────────────────────────────────── -->
   <section class="section section-light" id="overview">
     <div class="container">
@@ -73,8 +83,8 @@
         StereoPep is a curated benchmark dataset designed to study the effect of stereochemistry
         on peptide properties. Molecules with identical connectivity but different
         spatial arrangements can have dramatically different biological activities. StereoPep
-        provides a rigorous testbed for models that aim to distinguish and predict the properties
-        of chiral peptide sequences.
+        provides a testbed for models that aim to distinguish and predict the properties
+        of diastereomeric peptide sequences.
       </p>
       <div class="card-grid">
         <div class="card">
@@ -85,7 +95,7 @@
         <div class="card">
           <div class="card-icon">📊</div>
           <h3>Multiple Tasks</h3>
-          <p>Covers four tasks: overall retention time prediction, point mutations prediction, diastereomer pairs, and additiona mutation prediction.</p>
+          <p>Covers multiple tasks: overall retention time prediction, point mutations prediction, diastereomer pairs, and additiona mutation prediction.</p>
         </div>
         <div class="card">
           <div class="card-icon">⚖️</div>
@@ -203,12 +213,13 @@
       <p class="section-desc">
         If you use StereoPep in your research, please cite our paper:
       </p>
-      <pre class="code-block"><code>@article{stereoppep2024,
-  title   = {StereoPep: A Benchmark Dataset for Stereoisomer-Aware Peptide Property Prediction},
-  author  = {Author, First and Author, Second and Author, Third},
-  journal = {Journal Name},
-  year    = {2024},
-  url     = {https://arxiv.org/abs/XXXX.XXXXX}
+      <pre class="code-block"><code>@misc{amirabbas_kazeminia_2026,
+	author       = { Amirabbas Kazeminia and Michael Desgagné },
+	title        = { StereoPep (Revision 3848950) },
+	year         = 2026,
+	url          = { https://huggingface.co/datasets/amirka20/StereoPep },
+	doi          = { 10.57967/hf/8658 },
+	publisher    = { Hugging Face }
 }</code></pre>
     </div>
   </section>

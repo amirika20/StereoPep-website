@@ -31,14 +31,56 @@
     </div>
   </div>
 
+  <!-- ── Diastereomer 3D Viewer ────────────────────────────────────── -->
+  <section class="section section-light" id="diastereomers-3d">
+    <div class="container">
+      <h2 class="section-title">What are Diastereomers?</h2>
+      <p class="section-desc">
+        Diastereomers are molecules with the same atoms and bonds but different spatial
+        arrangements at one or more stereocenters — and they are <em>not</em> mirror images of
+        each other. The two dipeptides below share an identical sequence yet differ at one
+        alpha carbon, giving them distinct 3D shapes and different physical properties.
+        Drag to rotate and see the difference for yourself.
+      </p>
+      <div class="mol-viewer-row">
+        <div class="mol-card mol-card-ll">
+          <div class="mol-card-header">
+            <span class="mol-badge mol-badge-ll">L-Ala-L-Ala</span>
+            <span class="mol-config">(<em>S</em>,<em>S</em>)-configuration</span>
+          </div>
+          <div id="viewer-ll" class="mol-canvas">
+            <div class="mol-loading">Loading molecule&hellip;</div>
+          </div>
+          <p class="mol-hint">Drag to rotate &nbsp;&middot;&nbsp; Scroll to zoom</p>
+        </div>
+
+        <div class="mol-vs">VS</div>
+
+        <div class="mol-card mol-card-ld">
+          <div class="mol-card-header">
+            <span class="mol-badge mol-badge-ld">L-Ala-D-Ala</span>
+            <span class="mol-config">(<em>S</em>,<em>R</em>)-configuration</span>
+          </div>
+          <div id="viewer-ld" class="mol-canvas">
+            <div class="mol-loading">Loading molecule&hellip;</div>
+          </div>
+          <p class="mol-hint">Drag to rotate &nbsp;&middot;&nbsp; Scroll to zoom</p>
+        </div>
+      </div>
+      <p class="mol-note">
+        Same molecular formula &amp; connectivity &mdash; different 3D arrangement.
+        StereoPep captures this structural diversity across <strong>8,882 diastereomer pairs</strong>.
+      </p>
+    </div>
+  </section>
+
   <section class="section section-white">
     <div class="container narrow">
       <h2 class="section-title">Motivation</h2>
       <p>
-        Peptide drugs are an important and growing class of therapeutics. However, machine learning models
-        for peptide property prediction often ignore stereochemistry, treating L- and D-amino acid variants
-        as identical. In reality, stereoisomers can have profoundly different biological activities, stability,
-        and pharmacokinetic profiles.
+        Do molecular ML models learn stereochemistry? The field of machine learning has been growing specially for applications in chemistry and biology. In recent years, we have seen development of 
+        many models for predicting molecular properties, strucutre prediction, protein design etc. Some of these models do not explicitly use 3d strcutural info, and it makes sense because it is hard sometimes to
+        generate 3D strcutres. Here we present  
       </p>
       <p>
         StereoPep was created to close this gap — providing a rigorous benchmark that forces models to account
@@ -135,5 +177,75 @@
   </footer>
 
   <script src="js/main.js"></script>
+
+  <script src="https://3dmol.org/build/3Dmol-min.js"></script>
+  <script>
+  (function () {
+    var SMILES = {
+      ll: 'N[C@@H](C)C(=O)N[C@@H](C)C(=O)O',
+      ld: 'N[C@@H](C)C(=O)N[C@H](C)C(=O)O'
+    };
+
+    function fetchSDF(smiles) {
+      var url = 'https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/smiles/' +
+                encodeURIComponent(smiles) + '/SDF?record_type=3d';
+      return fetch(url).then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      }).then(function (text) {
+        if (text.length < 100 || text.indexOf('PUGREST.NotFound') !== -1)
+          throw new Error('Compound not found');
+        return text;
+      });
+    }
+
+    function renderMolecule(containerId, sdfData, bgColor) {
+      var el = document.getElementById(containerId);
+      if (!el) return;
+      var loading = el.querySelector('.mol-loading');
+      if (loading) loading.remove();
+
+      var viewer = $3Dmol.createViewer(el, { backgroundColor: bgColor, antialias: true });
+      viewer.addModel(sdfData, 'sdf');
+      viewer.setStyle({}, {
+        stick: { radius: 0.12, colorscheme: 'Jmol' },
+        sphere: { scale: 0.25, colorscheme: 'Jmol' }
+      });
+      viewer.zoomTo();
+      viewer.render();
+    }
+
+    function showError(containerId, msg) {
+      var el = document.getElementById(containerId);
+      if (!el) return;
+      el.innerHTML = '<div class="mol-error">' + msg + '</div>';
+    }
+
+    function init() {
+      if (typeof $3Dmol === 'undefined') {
+        showError('viewer-ll', 'Molecular viewer could not be loaded.');
+        showError('viewer-ld', 'Molecular viewer could not be loaded.');
+        return;
+      }
+      Promise.allSettled([fetchSDF(SMILES.ll), fetchSDF(SMILES.ld)])
+        .then(function (results) {
+          if (results[0].status === 'fulfilled')
+            renderMolecule('viewer-ll', results[0].value, '#eef4ff');
+          else
+            showError('viewer-ll', 'Could not fetch structure — check your connection.');
+
+          if (results[1].status === 'fulfilled')
+            renderMolecule('viewer-ld', results[1].value, '#f5f0ff');
+          else
+            showError('viewer-ld', 'Could not fetch structure — check your connection.');
+        });
+    }
+
+    if (document.readyState === 'loading')
+      document.addEventListener('DOMContentLoaded', init);
+    else
+      init();
+  })();
+  </script>
 </body>
 </html>

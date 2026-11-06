@@ -27,7 +27,7 @@
   <div class="page-header">
     <div class="container">
       <h1>Dataset</h1>
-      <p>Detailed information about the StereoPep sub-datasets, splits, and download instructions.</p>
+      <p>How StereoPep was generated, how it is split, the four benchmark tasks, and how to download it.</p>
     </div>
   </div>
 
@@ -35,7 +35,8 @@
     <div class="container">
       <h2 class="section-title">Download</h2>
       <p class="section-desc">
-        StereoPep datasets are freely available. Choose a format below:
+        StereoPep is freely available on Hugging Face under the MIT license, with dedicated configurations for
+        each benchmark task. Code for the baselines and for data curation is on GitHub.
       </p>
       <div class="download-grid">
         <a href="https://huggingface.co/datasets/amirka20/StereoPep" class="download-card" target="_blank" rel="noopener">
@@ -54,41 +55,64 @@
           <span class="dl-format">GitHub ↗</span>
         </a>
       </div>
+      <pre class="code-block" style="margin-top: 1.5rem;"><code>from datasets import load_dataset
+
+rt     = load_dataset("amirka20/StereoPep", "StereoPep")          # train / val / test / trainval
+pairs  = load_dataset("amirka20/StereoPep", "diastereomer_pairs") # diastereomer_pairs / diastereomer_pairs_trainval
+muts   = load_dataset("amirka20/StereoPep", "point_mutant_pairs")
+tags   = load_dataset("amirka20/StereoPep", "terminal_tag_pairs")
+canon  = load_dataset("amirka20/StereoPep", "natural")            # canonical-amino-acid-only subset</code></pre>
     </div>
   </section>
 
   <section class="section section-light">
     <div class="container">
-      <h2 class="section-title">Dataset</h2>
+      <h2 class="section-title">Dataset Design and Generation</h2>
 
       <div class="dataset-entry">
         <div class="dataset-header">
           <h3>StereoPep</h3>
           <div class="dataset-tags">
             <span class="tag tag-reg">Regression</span>
-            <span class="tag tag-phys">Retention Time</span>
+            <span class="tag tag-phys">Retention Time (%B)</span>
           </div>
         </div>
         <p>
-          StereoPep is a benchmark dataset of peptides with experimentally measured retention times,
-          explicitly designed to evaluate stereoisomer-aware models. It includes paired D/L-Phe
-          diastereomers to probe whether models can distinguish chiral variants that differ only in
-          the configuration of a single amino acid.
+          StereoPep contains 48,788 synthetic peptides produced via high-throughput flow synthesis and
+          experimentally characterized by reversed-phase liquid chromatography retention time. The dataset spans
+          11 peptide libraries ranging from 6-mers to 15-mers, with amino acid identities varied at designated
+          positions. To reflect conventional proteomics workflows, peptides were synthesized with either
+          arginine- or lysine-terminated sequences, mimicking tryptic digestion products.
+        </p>
+        <p>
+          Peptides were then derivatized with optically pure L- or D-phenylalanine at the N-terminus and, for
+          lysine-terminated peptides, additionally at the side-chain N<sup>ε</sup>-amine. These modifications
+          generate matched diastereomeric pairs differing at one or two stereogenic centers while preserving atomic
+          composition and connectivity. Phenylalanine was chosen as the tag because it produced the largest and most
+          consistent retention-time shifts among the canonical amino acids tested.
+        </p>
+        <p>
+          Peptide-spectrum matches were identified with FragPipe/MSFragger and filtered for confident assignments.
+          Retention times were normalized to <strong>%B</strong> (acetonitrile fraction at elution) to provide a
+          consistent scale across chromatographic gradients. Each peptide is also encoded as a canonical isomeric
+          SMILES string reflecting the predominant protonation state at the experimental pH of 3, with stereochemistry
+          explicitly encoded at every stereogenic center so that diastereomers map to distinct molecular graphs.
         </p>
         <div class="table-wrapper">
           <table class="data-table">
             <thead>
               <tr>
-                <th>Property</th>
-                <th>Train / Val</th>
-                <th>Test</th>
-                <th>Total</th>
+                <th>Split</th>
+                <th>Peptides</th>
+                <th>Diastereomer Pairs</th>
+                <th>Notes</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Peptides</td><td>46,063</td><td>2,726</td><td>48,789</td></tr>
-              <tr><td>Diastereomer Pairs</td><td>8,339</td><td>543</td><td>8,882</td></tr>
-              <tr><td>Tasks</td><td colspan="3">5 (point mutations, diastereomer change, diastereomer addition, generation, retention time prediction)</td></tr>
+              <tr><td>Train</td><td>41,455</td><td rowspan="2" style="vertical-align: middle;">8,339</td><td rowspan="2" style="vertical-align: middle;">Stratified 90/10 split (seed 42) by C-terminal residue (Lys/Arg), tag variant (D-Phe, L-Phe, label-free), and length</td></tr>
+              <tr><td>Validation</td><td>4,607</td></tr>
+              <tr><td>Test</td><td>2,726</td><td>542</td><td>Independently designed and synthesized; no exact sequence overlap with train/val</td></tr>
+              <tr><td><strong>Total</strong></td><td><strong>48,788</strong></td><td><strong>8,881</strong></td><td>11 libraries, 6–15 residues</td></tr>
             </tbody>
           </table>
         </div>
@@ -99,18 +123,86 @@
 
   <section class="section section-white">
     <div class="container">
+      <h2 class="section-title">Benchmark Tasks</h2>
+      <p class="section-desc">
+        In addition to retention-time prediction, StereoPep provides three structured pair benchmarks that ask
+        whether a model correctly predicts which peptide of a pair elutes later. Pairs are restricted to
+        |Δ<em>B</em>| ≥ 1.0 %B to exclude small differences attributable to experimental variability.
+      </p>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Hugging Face config</th>
+              <th>Size</th>
+              <th>What it evaluates</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Retention-time prediction</strong></td>
+              <td><code>StereoPep</code></td>
+              <td>48,788 peptides</td>
+              <td>Regression of absolute %B. Metrics: Pearson, Spearman, Kendall, R², RMSE, MAE.</td>
+            </tr>
+            <tr>
+              <td><strong>Diastereomeric pairs</strong></td>
+              <td><code>diastereomer_pairs</code></td>
+              <td>542 test · 8,339 train+val</td>
+              <td>Identical amino acid identities and connectivity, differing in D-/L-Phe configuration at one or two stereocenters. Sensitivity to stereochemical changes.</td>
+            </tr>
+            <tr>
+              <td><strong>Single-residue substitutions</strong></td>
+              <td><code>point_mutant_pairs</code></td>
+              <td>6,942 pairs</td>
+              <td>Equal-length peptides differing at exactly one amino acid position. Sensitivity to sequence perturbations.</td>
+            </tr>
+            <tr>
+              <td><strong>Terminal tag effects</strong></td>
+              <td><code>terminal_tag_pairs</code></td>
+              <td>1,549 pairs</td>
+              <td>Matched peptide backbones with and without Phe tagging. Isolates the effect of terminal modifications on retention.</td>
+            </tr>
+            <tr>
+              <td><strong>Canonical-only control</strong></td>
+              <td><code>natural</code></td>
+              <td>26,199 / 2,910 / 1,851</td>
+              <td>Train / val / test subset containing only canonical amino acids, used to test whether StereoPep's difficulty is driven solely by D-Phe.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+        For pair tasks, Δ<em>B</em> is the signed retention shift between the two members. For diastereomeric pairs,
+        Δ<em>B</em> = <em>B</em><sub>D</sub> − <em>B</em><sub>L</sub>; a positive value means the D-Phe form elutes later.
+        Models are trained to regress absolute %B, and pair metrics (pairwise accuracy, Δ-correlations, Δ AUC) are computed
+        post hoc from the predicted differences.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
       <h2 class="section-title">Data Format</h2>
-      <p class="section-desc">Each dataset is provided as a CSV file with the following columns:</p>
-      <pre class="code-block"><code>smiles,sequence,stereo_label,property_1,property_2,...,split
-CC[C@@H](N)C(=O)...,ACDEF,L,0.82,1.45,...,train
-CC[C@H](N)C(=O)...,ACDEF,D,0.21,1.45,...,train</code></pre>
+      <p class="section-desc">The main <code>StereoPep</code> configuration has one row per peptide with the following columns:</p>
+      <pre class="code-block"><code>Peptide,B,M,Z,Length,SMILES
+fVATTGEDWK,38.21,1292.63,2,10,N[C@H](Cc1ccccc1)C(=O)N[C@@H](C(C)C)C(=O)...
+FVATTGEDWK,37.05,1292.63,2,10,N[C@@H](Cc1ccccc1)C(=O)N[C@@H](C(C)C)C(=O)...</code></pre>
       <ul class="feature-list">
-        <li><strong>smiles</strong> — Canonical SMILES string encoding full stereochemistry</li>
-        <li><strong>sequence</strong> — Amino acid sequence (one-letter code)</li>
-        <li><strong>stereo_label</strong> — L (natural) or D (non-natural) chirality</li>
-        <li><strong>property_*</strong> — Experimental property values (NaN if not measured)</li>
-        <li><strong>split</strong> — Assigned split: train / valid / test</li>
+        <li><strong>Peptide</strong> — One-letter amino acid sequence. Lowercase <code>f</code> denotes D-phenylalanine; uppercase <code>F</code> is L-phenylalanine.</li>
+        <li><strong>B</strong> — Elution point as percent acetonitrile (%B). The regression target.</li>
+        <li><strong>M</strong> — Observed monoisotopic mass (Da).</li>
+        <li><strong>Z</strong> — Precursor ion charge state.</li>
+        <li><strong>Length</strong> — Number of residues.</li>
+        <li><strong>SMILES</strong> — Canonical isomeric SMILES at pH 3 with explicit stereochemistry at every stereocenter.</li>
       </ul>
+      <p style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
+        Pair configurations contain the sequence, SMILES, and %B of both members plus a signed <code>delta_B</code> column
+        (for example <code>Sequence_f</code> / <code>Sequence_F</code>, <code>B_f</code> / <code>B_F</code> for diastereomer pairs;
+        <code>Position</code>, <code>Residue_1</code> / <code>Residue_2</code> for single-residue substitutions;
+        <code>Tag</code> for terminal tag pairs). The example values above are illustrative.
+      </p>
     </div>
   </section>
 
@@ -118,7 +210,7 @@ CC[C@H](N)C(=O)...,ACDEF,D,0.21,1.45,...,train</code></pre>
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="logo-accent">Stereo</span>Pep
-        <p>A stereoisomer-aware peptide benchmark dataset.</p>
+        <p>A stereochemistry-aware peptide benchmark dataset.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
@@ -142,7 +234,7 @@ CC[C@H](N)C(=O)...,ACDEF,D,0.21,1.45,...,train</code></pre>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 StereoPep. All rights reserved.</p>
+      <p>&copy; 2026 StereoPep. All rights reserved.</p>
     </div>
   </footer>
 

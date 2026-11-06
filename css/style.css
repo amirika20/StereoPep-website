@@ -710,3 +710,27 @@ p { color: var(--text-muted); line-height: 1.75; }
   .mol-canvas { height: 240px; }
   .mol-vs { padding: 0.25rem 0; }
 }
+
+/* ── Leaderboard baseline rows ────────────────────────────────────── */
+.baseline-row td {
+  background: #f8fafc;
+  color: var(--text-muted);
+  font-size: .85rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.data-table code,
+.section-desc code,
+p code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .85em;
+  background: #f1f5f9;
+  padding: .1em .35em;
+  border-radius: 4px;
+}

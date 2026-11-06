@@ -36,11 +36,12 @@
     <div class="container">
       <h2 class="section-title">What are Diastereomers?</h2>
       <p class="section-desc">
-        Diastereomers are molecules with the same atoms and bonds but different spatial
-        arrangements at one or more stereocenters — and they are <em>not</em> mirror images of
-        each other. The two dipeptides below share an identical sequence yet differ at one
-        alpha carbon, giving them distinct 3D shapes and different physical properties.
-        Drag to rotate and see the difference for yourself.
+        Many amino acids, such as phenylalanine, exist in two stereochemical configurations, L and D. These form
+        enantiomers: non-superimposable mirror images, analogous to left and right hands. Peptides containing
+        multiple stereogenic centers can also form <em>diastereomers</em>, stereoisomers that are <em>not</em> mirror
+        images of one another. Replacing one L-amino acid with its D-counterpart produces a peptide with identical
+        amino acid identities and connectivity but a distinct three-dimensional configuration. The two dipeptides
+        below share the same sequence yet differ at one alpha carbon. Drag to rotate and see the difference for yourself.
       </p>
       <div class="mol-viewer-row">
         <div class="mol-card mol-card-ll">
@@ -69,7 +70,7 @@
       </div>
       <p class="mol-note">
         Same molecular formula &amp; connectivity &mdash; different 3D arrangement.
-        StereoPep captures this structural diversity across <strong>8,882 diastereomer pairs</strong>.
+        StereoPep captures this structural diversity across <strong>8,881 matched D/L-Phe diastereomer pairs</strong>.
       </p>
     </div>
   </section>
@@ -78,68 +79,116 @@
     <div class="container narrow">
       <h2 class="section-title">Motivation</h2>
       <p>
-        Do molecular ML models learn stereochemistry? The field of machine learning has been growing specially for applications in chemistry and biology. In recent years, we have seen development of 
-        many models for predicting molecular properties, strucutre prediction, protein design etc. Some of these models do not explicitly use 3d strcutural info, and it makes sense because it is hard sometimes to
-        generate 3D strcutres. Here we present  
+        Do molecular machine learning models actually learn stereochemistry? Deep learning has reshaped molecular
+        and biological modeling: structure predictors reach near-experimental accuracy, protein language models
+        learn evolutionary and structural priors from sequence alone, and generative methods design proteins de novo.
+        Yet models trained predominantly on naturally occurring sequences may exploit sequence and composition
+        statistics without adequately capturing the effects of stereochemical variation. L- and D-amino acids share
+        identical atomic composition and connectivity, so representations based solely on sequence, residue identity,
+        or composition are blind to stereochemical changes, even when those changes measurably alter physicochemical
+        properties.
       </p>
       <p>
-        StereoPep was created to close this gap — providing a rigorous benchmark that forces models to account
-        for chirality when predicting peptide properties. We hope it will drive the development of
-        stereoisomer-aware molecular representations and models.
+        Three factors have left this gap largely unaddressed. Public peptide datasets are derived almost entirely from
+        natural proteomes and therefore contain little stereochemical variation. Established retention-time predictors
+        were built for conventional proteomics and do not explicitly distinguish L- and D-configurations. And building
+        large, stereochemically controlled peptide libraries has historically been experimentally impractical.
+      </p>
+      <p>
+        Recent advances in high-throughput flow synthesis now make it possible to produce tens of thousands of synthetic
+        peptides in a standardized way. StereoPep uses this capability to create 48,788 experimentally characterized
+        peptides with matched diastereomeric pairs, enabling a direct test of whether specialized retention-time
+        predictors, molecular fingerprints, graph neural networks, sequence transformers, and protein and chemical
+        language models are sensitive to stereochemical inversions. Beyond benchmarking, the retention-time shifts
+        induced by stereochemical tags point toward a new multiplexing strategy for LC-MS proteomics.
+      </p>
+      <p>
+        Our central finding is a dissociation between overall retention-time prediction and stereochemical
+        discrimination: the strongest predictors reach Pearson <em>r</em> ≈ 0.80 overall yet perform near chance on
+        diastereomeric pair discrimination. Explicitly encoding chirality at the input level, through dedicated D-Phe
+        tokens, atom-level chirality features, or SMILES stereodescriptors, is not sufficient to close this gap. We hope
+        StereoPep drives the development of chirality-aware architectures, 3D and conformer-aware representations, and
+        stereochemistry-aware pretraining.
       </p>
 
       <h2 class="section-title" style="margin-top: 3rem;">Team</h2>
       <div class="team-grid">
         <div class="team-card">
           <div class="team-avatar">👤</div>
-          <h4>Michael Desgagné <sup>*</sup></h4>
-          <p>Massachusetts Institute of Technology</p>
+          <h4>Michael Desgagné <sup>†</sup></h4>
+          <p>Department of Chemistry, Massachusetts Institute of Technology</p>
         </div>
         <div class="team-card">
           <div class="team-avatar">👤</div>
-          <h4>Amirabbas Kazeminia <sup>*</sup></h4>
-          <p>Harvard University</p>
+          <h4>Amirabbas Kazeminia <sup>†</sup></h4>
+          <p>Biophysics Graduate Program, Harvard University</p>
         </div>
         <div class="team-card">
           <div class="team-avatar">👤</div>
           <h4>Kübra Kaygisiz</h4>
-          <p>Massachusetts Institute of Technology</p>
+          <p>Department of Chemistry, Massachusetts Institute of Technology</p>
         </div>
         <div class="team-card">
           <div class="team-avatar">👤</div>
-          <h4>Bradley L. Pentelute</h4>
-          <p>Massachusetts Institute of Technology</p>
+          <h4>Bradley L. Pentelute <sup>*</sup></h4>
+          <p>Department of Chemistry, Koch Institute for Integrative Cancer Research, and Center for Environmental Health Sciences, Massachusetts Institute of Technology</p>
         </div>
         <div class="team-card">
           <div class="team-avatar">👤</div>
-          <h4>Marinka Zitnik</h4>
-          <p>Harvard University</p>
+          <h4>Marinka Zitnik <sup>*</sup></h4>
+          <p>Department of Biomedical Informatics, Harvard Medical School, and Kempner Institute, Harvard University</p>
         </div>
       </div>
-      <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">* Equal contribution</p>
+      <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted);">† Equal contribution &nbsp;·&nbsp; * Corresponding authors</p>
 
       <h2 class="section-title" style="margin-top: 3rem;">Citation</h2>
-      <p>If you use StereoPep, please cite:</p>
-      <pre class="code-block"><code>@article{stereoppep2024,
-  title   = {StereoPep: A Benchmark Dataset for Stereoisomer-Aware Peptide Property Prediction},
-  author  = {Author, First and Author, Second and Author, Third},
-  journal = {Journal Name},
-  year    = {2024},
-  url     = {https://arxiv.org/abs/XXXX.XXXXX}
+      <p>
+        StereoPep was accepted at <strong>NeurIPS 2026</strong> (Track on Evaluations and Datasets).
+        If you use StereoPep, please cite:
+      </p>
+      <pre class="code-block"><code>@inproceedings{desgagne2026stereopep,
+  title     = {StereoPep: Predicting the Effects of Stereochemical Inversions on
+               Synthetic Peptide Retention Time in Combinatorial Libraries},
+  author    = {Desgagn{\'e}, Michael and Kazeminia, Amirabbas and Kaygisiz, K{\"u}bra
+               and Pentelute, Bradley L. and Zitnik, Marinka},
+  booktitle = {Advances in Neural Information Processing Systems 40 (NeurIPS 2026),
+               Track on Evaluations and Datasets},
+  year      = {2026},
+  url       = {https://huggingface.co/datasets/amirka20/StereoPep}
 }</code></pre>
 
       <h2 class="section-title" style="margin-top: 3rem;">License</h2>
       <p>
-        The StereoPep dataset is released under the
-        <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 (CC BY 4.0)</a>
-        license. The code is available under the MIT License.
+        The StereoPep dataset is released on
+        <a href="https://huggingface.co/datasets/amirka20/StereoPep" target="_blank" rel="noopener">Hugging Face</a>
+        under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT License</a>.
+        The benchmark and curation code are also available under the MIT License.
+      </p>
+
+      <h2 class="section-title" style="margin-top: 3rem;">Acknowledgments</h2>
+      <p style="font-size: 0.95rem;">
+        This work was supported by an NSERC Postdoctoral Fellowship (PDF-587823-2024) and an FRQNT Postdoctoral
+        Fellowship (2024-2025-B3X-349259) awarded to M.D. K.K. acknowledges support from the German National Academy
+        of Sciences Leopoldina through a postdoctoral fellowship (LPDS 2024-09). A.K. acknowledges support from the
+        Harvard University Biophysics Graduate Program institutional funds. This research was also supported in part
+        by a grant from the Biswas Computational Biology Initiative in partnership with the Milken Institute.
+        Computational experiments were performed in part using resources provided by the Kempner Institute for the
+        Study of Natural and Artificial Intelligence at Harvard University, made possible in part by a gift from the
+        Chan Zuckerberg Initiative Foundation.
+      </p>
+      <p style="font-size: 0.95rem;">
+        We thank Nikolai Slavov, Harrison Specht, and Maddy Yeh (Parallel Squared Technology Institute) for valuable
+        discussions and insights, and Sepideh Rezvanian, Andrei Loas, and Julien Couture-Senécal (Massachusetts
+        Institute of Technology) for insightful discussions.
       </p>
 
       <h2 class="section-title" style="margin-top: 3rem;">Contact</h2>
       <p>
         For questions, bug reports, or contributions, please open an issue on
-        <a href="https://github.com/amirika20/StereoPep-Benchmarks" target="_blank" rel="noopener">GitHub</a> or contact us at
-        <a href="mailto:contact@example.com">contact@example.com</a>.
+        <a href="https://github.com/amirika20/StereoPep-Benchmarks" target="_blank" rel="noopener">GitHub</a>.
+        For other inquiries, contact the corresponding authors:
+        <a href="mailto:blp@mit.edu">blp@mit.edu</a> and
+        <a href="mailto:marinka@hms.harvard.edu">marinka@hms.harvard.edu</a>.
       </p>
     </div>
   </section>
@@ -148,7 +197,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="logo-accent">Stereo</span>Pep
-        <p>A stereoisomer-aware peptide benchmark dataset.</p>
+        <p>A stereochemistry-aware peptide benchmark dataset.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
@@ -172,7 +221,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 StereoPep. All rights reserved.</p>
+      <p>&copy; 2026 StereoPep. All rights reserved.</p>
     </div>
   </footer>
 

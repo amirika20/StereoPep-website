@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StereoPep — Stereochemistry-aware Peptide Benchmark Dataset</title>
+  <meta name="description" content="StereoPep: a NeurIPS 2026 benchmark of 48,788 synthetic peptides with experimentally measured retention times, including matched D/L-Phe diastereomeric pairs for evaluating stereochemistry-aware molecular models." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -34,26 +35,32 @@
   <!-- ── Hero ──────────────────────────────────────────────────────── -->
   <header class="hero">
     <div class="container hero-inner">
-      <div class="hero-badge">Benchmark Dataset</div>
+      <div class="hero-badge">🎉 Accepted at NeurIPS 2026 · Evaluations and Datasets Track</div>
       <h1 class="hero-title">
         <span class="accent">StereoPep</span>
       </h1>
       <p class="hero-subtitle">
-        A benchmark dataset for stereochemistry-aware peptide property prediction,
-        enabling fair evaluation of machine learning models on diastereomer peptide sequences.
+        Predicting the effects of stereochemical inversions on synthetic peptide retention time
+        in combinatorial libraries. A benchmark of 48,788 chemically synthesized peptides with
+        matched diastereomeric pairs, enabling systematic evaluation of whether molecular machine
+        learning models capture stereochemistry.
       </p>
       <div class="hero-stats">
         <div class="stat-card">
-          <span class="stat-num">48,789</span>
-          <span class="stat-label">Peptides</span>
+          <span class="stat-num">48,788</span>
+          <span class="stat-label">Synthetic Peptides</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num">5</span>
-          <span class="stat-label">Tasks</span>
+          <span class="stat-num">11</span>
+          <span class="stat-label">Peptide Libraries</span>
         </div>
         <div class="stat-card">
-          <span class="stat-num">8,882</span>
+          <span class="stat-num">8,881</span>
           <span class="stat-label">Diastereomer Pairs</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Benchmark Tasks</span>
         </div>
       </div>
       <div class="hero-actions">
@@ -80,44 +87,62 @@
     <div class="container">
       <h2 class="section-title">What is StereoPep?</h2>
       <p class="section-desc">
-        StereoPep is a curated benchmark dataset designed to study the effect of stereochemistry
-        on peptide properties. Molecules with identical connectivity but different
-        spatial arrangements can have dramatically different biological activities. StereoPep
-        provides a testbed for models that aim to distinguish and predict the properties
-        of diastereomeric peptide sequences.
+        Existing peptide models achieve strong performance on natural-sequence proteomics benchmarks,
+        but whether they capture underlying physicochemical principles or primarily exploit sequence
+        statistics remains unclear. StereoPep is a benchmark of 48,788 chemically synthesized peptides
+        spanning 11 libraries, produced via high-throughput flow synthesis and characterized by
+        reverse-phase liquid chromatography retention time. Each library was tagged with optically pure
+        L- or D-phenylalanine, generating matched diastereomeric pairs that share atomic composition and
+        connectivity but differ in the stereochemistry of one or two residues.
       </p>
       <div class="card-grid">
         <div class="card">
           <div class="card-icon">🧬</div>
           <h3>Stereochemistry-Aware</h3>
-          <p>Carefully curated pairs of L/D amino acid stereoisomers with experimentally measured properties.</p>
+          <p>8.3k matched D/L-Phe diastereomeric pairs isolate the effect of a stereochemical inversion from any change in composition or connectivity.</p>
         </div>
         <div class="card">
           <div class="card-icon">📊</div>
-          <h3>Multiple Tasks</h3>
-          <p>Covers multiple tasks: overall retention time prediction, point mutations prediction, diastereomer pairs, and additiona mutation prediction.</p>
+          <h3>Four Benchmark Tasks</h3>
+          <p>Overall retention-time regression plus three structured pair tasks: diastereomeric pairs, single-residue substitutions, and terminal tag effects.</p>
         </div>
         <div class="card">
           <div class="card-icon">⚖️</div>
-          <h3>Fair Splits</h3>
-          <p>Standardized train/validation/test splits designed to prevent data leakage and enable reproducible benchmarking.</p>
+          <h3>Independent Test Set</h3>
+          <p>The 2,726-peptide test set was independently designed and synthesized with no exact sequence overlap with training or validation data.</p>
         </div>
         <div class="card">
           <div class="card-icon">🔬</div>
           <h3>Experimental Data</h3>
-          <p>All labels derived from wet-lab experimental measurements, not computational predictions.</p>
+          <p>All labels are wet-lab nLC-MS/MS measurements, normalized to %B (acetonitrile fraction at elution) for a consistent scale across gradients.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── Key finding ───────────────────────────────────────────────── -->
+  <section class="section section-white" id="key-finding">
+    <div class="container">
+      <h2 class="section-title">Key Finding</h2>
+      <p class="section-desc">
+        Across specialized retention-time predictors, molecular fingerprints, graph neural networks,
+        sequence transformers, protein language models, and chemical language models, all approaches
+        predict overall retention reasonably well (Pearson <em>r</em> up to 0.80). However, the predicted
+        differences between matched diastereomers provide limited discrimination of which stereoisomer
+        elutes later (ROC-AUC up to 0.61, where 0.50 is chance). Single-residue substitutions, by contrast,
+        are predicted far more reliably (ROC-AUC up to 0.79). These findings reveal a substantial gap
+        between overall property prediction and sensitivity to stereochemical differences.
+      </p>
+    </div>
+  </section>
+
   <!-- ── Dataset Summary ───────────────────────────────────────────── -->
-  <section class="section section-white" id="datasets">
+  <section class="section section-light" id="datasets">
     <div class="container">
       <h2 class="section-title">Dataset Overview</h2>
       <p class="section-desc">
-        StereoPep is a single curated dataset with experimentally measured retention times,
-        partitioned into train/validation and test splits with diastereomer pairs tracked separately.
+        A single curated dataset with experimentally measured retention times, partitioned into
+        train / validation / test splits, with diastereomer pairs tracked separately.
         See the <a href="dataset.html">Dataset page</a> for full details.
       </p>
       <div class="table-wrapper">
@@ -131,19 +156,23 @@
           </thead>
           <tbody>
             <tr>
-              <td>Train + Validation</td>
-              <td>46,063</td>
-              <td>8,339</td>
+              <td>Train</td>
+              <td>41,455</td>
+              <td rowspan="2" style="vertical-align: middle;">8,339</td>
             </tr>
             <tr>
-              <td>Test</td>
+              <td>Validation</td>
+              <td>4,607</td>
+            </tr>
+            <tr>
+              <td>Test (independently synthesized)</td>
               <td>2,726</td>
-              <td>543</td>
+              <td>542</td>
             </tr>
             <tr>
               <td><strong>Total</strong></td>
-              <td><strong>48,789</strong></td>
-              <td><strong>8,882</strong></td>
+              <td><strong>48,788</strong></td>
+              <td><strong>8,881</strong></td>
             </tr>
           </tbody>
         </table>
@@ -152,14 +181,14 @@
   </section>
 
   <!-- ── Leaderboard Preview ───────────────────────────────────────── -->
-  <section class="section section-light" id="leaderboard-preview">
+  <section class="section section-white" id="leaderboard-preview">
     <div class="container">
       <h2 class="section-title">Leaderboard</h2>
       <p class="section-desc">
-        State-of-the-art results on StereoPep. Submit your results to be listed here.
-        Full results are on the <a href="leaderboard.html">Leaderboard page</a>.
+        Benchmark results from the paper. Submit your results to be listed here.
+        Full results for all four tasks are on the <a href="leaderboard.html">Leaderboard page</a>.
       </p>
-      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;">Retention time prediction — ranked by Pearson <em>r</em> ↑. Bold = best per column.</p>
+      <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;">Retention time prediction (%B) — top 3 by Pearson <em>r</em>, mean ± std over three seeds. Bold = best per column.</p>
       <div class="table-wrapper">
         <table class="data-table">
           <thead>
@@ -175,27 +204,64 @@
           <tbody>
             <tr class="rank-1">
               <td>1</td>
-              <td>DeepLC</td>
-              <td><strong>0.804 ± 0.013</strong></td>
-              <td><strong>0.849 ± 0.008</strong></td>
-              <td>6.692 ± 0.263</td>
-              <td>4.644 ± 0.214</td>
+              <td>ChemBERTa-2-MLM</td>
+              <td><strong>0.80 ± 0.01</strong></td>
+              <td><strong>0.86 ± 0.00</strong></td>
+              <td>6.70 ± 0.19</td>
+              <td><strong>4.50 ± 0.11</strong></td>
             </tr>
             <tr>
               <td>2</td>
-              <td>GIN</td>
-              <td>0.788 ± 0.014</td>
-              <td>0.838 ± 0.015</td>
-              <td><strong>6.649 ± 0.300</strong></td>
-              <td><strong>4.474 ± 0.177</strong></td>
+              <td>DeepLC</td>
+              <td>0.80 ± 0.02</td>
+              <td>0.85 ± 0.02</td>
+              <td><strong>6.68 ± 0.24</strong></td>
+              <td>4.68 ± 0.28</td>
             </tr>
             <tr>
               <td>3</td>
-              <td>ESM3-small</td>
-              <td>0.787 ± 0.008</td>
-              <td>0.826 ± 0.007</td>
-              <td>7.981 ± 0.539</td>
-              <td>5.622 ± 0.439</td>
+              <td>GIN</td>
+              <td>0.79 ± 0.01</td>
+              <td>0.84 ± 0.01</td>
+              <td>6.81 ± 0.50</td>
+              <td>4.61 ± 0.41</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin: 1.5rem 0 1rem; color: var(--text-muted); font-size: 0.875rem;">Diastereomeric pair discrimination — top 3 by Δ AUC (chance = 0.50, majority-class accuracy = 0.640).</p>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Model</th>
+              <th>Δ AUC ↑</th>
+              <th>Pairwise Acc. ↑</th>
+              <th>Δ Spearman ↑</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="rank-1">
+              <td>1</td>
+              <td>Pretrained PepLand</td>
+              <td><strong>0.61 ± 0.01</strong></td>
+              <td><strong>0.64 ± 0.00</strong></td>
+              <td><strong>0.28 ± 0.01</strong></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>ESMC-300M</td>
+              <td>0.55 ± 0.05</td>
+              <td>0.60 ± 0.03</td>
+              <td>0.12 ± 0.06</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Pretrained GIN</td>
+              <td>0.55 ± 0.08</td>
+              <td><strong>0.64 ± 0.01</strong></td>
+              <td>0.10 ± 0.10</td>
             </tr>
           </tbody>
         </table>
@@ -207,19 +273,21 @@
   </section>
 
   <!-- ── Citation ───────────────────────────────────────────────────── -->
-  <section class="section section-white" id="citation">
+  <section class="section section-light" id="citation">
     <div class="container">
       <h2 class="section-title">Citation</h2>
       <p class="section-desc">
-        If you use StereoPep in your research, please cite our paper:
+        If you use StereoPep in your research, please cite our NeurIPS 2026 paper:
       </p>
-      <pre class="code-block"><code>@misc{amirabbas_kazeminia_2026,
-	author       = { Amirabbas Kazeminia and Michael Desgagné },
-	title        = { StereoPep (Revision 3848950) },
-	year         = 2026,
-	url          = { https://huggingface.co/datasets/amirka20/StereoPep },
-	doi          = { 10.57967/hf/8658 },
-	publisher    = { Hugging Face }
+      <pre class="code-block"><code>@inproceedings{desgagne2026stereopep,
+  title     = {StereoPep: Predicting the Effects of Stereochemical Inversions on
+               Synthetic Peptide Retention Time in Combinatorial Libraries},
+  author    = {Desgagn{\'e}, Michael and Kazeminia, Amirabbas and Kaygisiz, K{\"u}bra
+               and Pentelute, Bradley L. and Zitnik, Marinka},
+  booktitle = {Advances in Neural Information Processing Systems 40 (NeurIPS 2026),
+               Track on Evaluations and Datasets},
+  year      = {2026},
+  url       = {https://huggingface.co/datasets/amirka20/StereoPep}
 }</code></pre>
     </div>
   </section>
@@ -229,7 +297,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="logo-accent">Stereo</span>Pep
-        <p>A stereoisomer-aware peptide benchmark dataset.</p>
+        <p>A stereochemistry-aware peptide benchmark dataset.</p>
       </div>
       <div class="footer-links">
         <div class="footer-col">
@@ -253,7 +321,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 StereoPep. All rights reserved.</p>
+      <p>&copy; 2026 StereoPep. All rights reserved.</p>
     </div>
   </footer>
 

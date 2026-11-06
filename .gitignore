@@ -1,0 +1,9 @@
+# Paper manuscript — kept locally for reference, not published with the site
+*.pdf
+Neurips_2026_D_E__StereoPep__Predicting_the_Effects_of_Stereochemical_Inversions_on_Synthetic_Peptide_Retention_Time_in_Combinatorial_Libraries.pdf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

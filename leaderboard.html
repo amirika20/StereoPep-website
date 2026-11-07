@@ -27,7 +27,7 @@
   <div class="page-header">
     <div class="container">
       <h1>Leaderboard</h1>
-      <p>Benchmark results from the NeurIPS 2026 paper. All models regress absolute retention (%B); pair metrics are computed post hoc from predicted differences. Mean ± std over three training seeds.</p>
+      <p>Benchmark results from the NeurIPS 2026 paper. All models regress absolute retention (%B); pair metrics are computed post hoc from predicted differences. Mean ± std over independent training seeds (at least nine on the main benchmark, three on the canonical-only subset).</p>
     </div>
   </div>
 
@@ -51,7 +51,7 @@
       <div class="lb-section" id="lb-retention-time">
         <h2 class="section-title">Retention Time Prediction (%B) — Full Test Set</h2>
         <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
-          Overall regression performance on the 2,726-peptide held-out test set. Ranked by Pearson <em>r</em>.
+          Overall regression performance on the 2,726-peptide held-out test set (mean ± std over at least nine seeds). Ranked by Pearson <em>r</em>.
           Bold denotes best per column. ↑ higher is better, ↓ lower is better. ME = mean error (closest to zero is best).
         </p>
         <div class="table-wrapper">
@@ -78,19 +78,19 @@
                 <td><strong>0.68 ± 0.01</strong></td>
                 <td>0.58 ± 0.02</td>
                 <td>6.70 ± 0.19</td>
-                <td><strong>4.50 ± 0.11</strong></td>
+                <td>4.50 ± 0.11</td>
                 <td>−2.35 ± 0.42</td>
               </tr>
               <tr class="rank-2">
                 <td><span class="rank-badge silver">2</span></td>
                 <td>DeepLC</td>
-                <td>0.80 ± 0.02</td>
-                <td>0.85 ± 0.02</td>
-                <td>0.67 ± 0.02</td>
+                <td>0.80 ± 0.01</td>
+                <td>0.85 ± 0.01</td>
+                <td>0.67 ± 0.01</td>
                 <td><strong>0.58 ± 0.03</strong></td>
-                <td><strong>6.68 ± 0.24</strong></td>
-                <td>4.68 ± 0.28</td>
-                <td>−2.17 ± 0.83</td>
+                <td><strong>6.65 ± 0.24</strong></td>
+                <td>4.61 ± 0.20</td>
+                <td>−2.38 ± 0.54</td>
               </tr>
               <tr class="rank-3">
                 <td><span class="rank-badge bronze">3</span></td>
@@ -98,10 +98,10 @@
                 <td>0.79 ± 0.01</td>
                 <td>0.84 ± 0.01</td>
                 <td>0.66 ± 0.01</td>
-                <td>0.56 ± 0.07</td>
-                <td>6.81 ± 0.50</td>
-                <td>4.61 ± 0.41</td>
-                <td>−2.09 ± 0.92</td>
+                <td>0.58 ± 0.04</td>
+                <td>6.67 ± 0.31</td>
+                <td><strong>4.49 ± 0.18</strong></td>
+                <td>−1.87 ± 0.63</td>
               </tr>
               <tr>
                 <td>4</td>
@@ -138,6 +138,17 @@
               </tr>
               <tr>
                 <td>7</td>
+                <td>DeepRT-CapsNet</td>
+                <td>0.77 ± 0.02</td>
+                <td>0.80 ± 0.02</td>
+                <td>0.61 ± 0.02</td>
+                <td>0.53 ± 0.04</td>
+                <td>7.10 ± 0.28</td>
+                <td>5.08 ± 0.21</td>
+                <td>−1.97 ± 0.83</td>
+              </tr>
+              <tr>
+                <td>8</td>
                 <td>ESMC-600M</td>
                 <td>0.76 ± 0.01</td>
                 <td>0.83 ± 0.01</td>
@@ -148,29 +159,7 @@
                 <td>−4.94 ± 0.37</td>
               </tr>
               <tr>
-                <td>8</td>
-                <td>DeepRT-CapsNet</td>
-                <td>0.76 ± 0.02</td>
-                <td>0.80 ± 0.02</td>
-                <td>0.61 ± 0.02</td>
-                <td>0.51 ± 0.07</td>
-                <td>7.23 ± 0.48</td>
-                <td>5.17 ± 0.33</td>
-                <td>−2.16 ± 0.99</td>
-              </tr>
-              <tr>
                 <td>9</td>
-                <td>Transformer</td>
-                <td>0.75 ± 0.04</td>
-                <td>0.80 ± 0.03</td>
-                <td>0.61 ± 0.03</td>
-                <td>0.51 ± 0.05</td>
-                <td>7.18 ± 0.40</td>
-                <td>5.10 ± 0.33</td>
-                <td><strong>−1.76 ± 0.93</strong></td>
-              </tr>
-              <tr>
-                <td>10</td>
                 <td>PeptideCLM-2-Hybrid</td>
                 <td>0.75 ± 0.02</td>
                 <td>0.79 ± 0.02</td>
@@ -181,15 +170,26 @@
                 <td>−2.65 ± 0.34</td>
               </tr>
               <tr>
+                <td>10</td>
+                <td>Transformer</td>
+                <td>0.74 ± 0.03</td>
+                <td>0.79 ± 0.03</td>
+                <td>0.60 ± 0.03</td>
+                <td>0.51 ± 0.05</td>
+                <td>7.23 ± 0.39</td>
+                <td>5.15 ± 0.31</td>
+                <td><strong>−1.67 ± 0.94</strong></td>
+              </tr>
+              <tr>
                 <td>11</td>
                 <td>Pretrained GIN</td>
-                <td>0.73 ± 0.02</td>
+                <td>0.72 ± 0.02</td>
                 <td>0.78 ± 0.02</td>
                 <td>0.59 ± 0.02</td>
                 <td>0.46 ± 0.03</td>
-                <td>7.57 ± 0.19</td>
-                <td>5.23 ± 0.15</td>
-                <td>−2.63 ± 0.25</td>
+                <td>7.58 ± 0.20</td>
+                <td>5.23 ± 0.16</td>
+                <td>−2.59 ± 0.23</td>
               </tr>
               <tr>
                 <td>12</td>
@@ -208,10 +208,10 @@
                 <td>0.51 ± 0.02</td>
                 <td>0.53 ± 0.03</td>
                 <td>0.38 ± 0.02</td>
-                <td>0.16 ± 0.06</td>
-                <td>9.47 ± 0.33</td>
-                <td>6.94 ± 0.25</td>
-                <td>−1.98 ± 1.00</td>
+                <td>0.17 ± 0.03</td>
+                <td>9.39 ± 0.19</td>
+                <td>6.88 ± 0.15</td>
+                <td>−1.69 ± 0.39</td>
               </tr>
             </tbody>
           </table>
@@ -220,7 +220,7 @@
         <h3 style="margin-top: 2.5rem; margin-bottom: .5rem; font-size: 1.1rem;">How hard is StereoPep? Comparison with the Misc benchmark</h3>
         <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">
           Test Pearson <em>r</em> for the same five architectures on StereoPep versus the widely used Misc
-          retention-time dataset (146,587 natural human peptides). Every model exceeds <em>r</em> = 0.97 on Misc
+          retention-time dataset (146,587 natural human peptides), mean ± std over at least nine seeds. Every model exceeds <em>r</em> = 0.97 on Misc
           but falls to roughly 0.7–0.8 on StereoPep.
         </p>
         <div class="table-wrapper">
@@ -238,11 +238,11 @@
             <tbody>
               <tr>
                 <td><strong>StereoPep</strong></td>
-                <td>0.788 ± 0.014</td>
-                <td>0.725 ± 0.015</td>
-                <td>0.742 ± 0.033</td>
-                <td><strong>0.804 ± 0.013</strong></td>
-                <td>0.767 ± 0.022</td>
+                <td>0.787 ± 0.015</td>
+                <td>0.725 ± 0.016</td>
+                <td>0.739 ± 0.034</td>
+                <td><strong>0.804 ± 0.014</strong></td>
+                <td>0.767 ± 0.023</td>
               </tr>
               <tr>
                 <td>Misc</td>
@@ -262,7 +262,7 @@
         <h2 class="section-title">Retention Time Prediction (%B) — Canonical Amino Acids Only</h2>
         <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
           Control experiment: models are retrained and evaluated on the canonical-amino-acid-only subset of StereoPep
-          (no D-Phe; Hugging Face config <code>natural</code>, 1,851 test peptides). Performance stays well below Misc,
+          (no D-Phe; Hugging Face config <code>natural</code>, 1,851 test peptides; mean ± std over three seeds). Performance stays well below Misc,
           showing that StereoPep's difficulty extends beyond D/L discrimination. Ranked by Pearson <em>r</em>; bold denotes best per column.
         </p>
         <div class="table-wrapper">
@@ -401,7 +401,7 @@
         <h2 class="section-title">Diastereomeric Pair Discrimination — D/L-Phe Pairs</h2>
         <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
           542 held-out test pairs with identical composition and connectivity, differing only in D-/L-Phe configuration
-          at one or two stereocenters. Δ<em>B</em> = <em>B</em><sub>D</sub> − <em>B</em><sub>L</sub>; pairwise accuracy
+          at one or two stereocenters (mean ± std over at least nine seeds). Δ<em>B</em> = <em>B</em><sub>D</sub> − <em>B</em><sub>L</sub>; pairwise accuracy
           checks whether sign(Δ<em>B̂</em>) = sign(Δ<em>B</em>), with ties counted as incorrect.
           Because 64.0% of test pairs have Δ<em>B</em> &gt; 0, the majority-class accuracy is 0.640, so
           <strong>Δ AUC (chance = 0.50) is the primary metric</strong> and rows are ranked by it. Bold denotes best per column.
@@ -436,7 +436,7 @@
               <tr class="rank-1">
                 <td><span class="rank-badge gold">1</span></td>
                 <td>Pretrained PepLand</td>
-                <td><strong>0.64 ± 0.00</strong></td>
+                <td>0.64 ± 0.00</td>
                 <td><strong>0.19 ± 0.01</strong></td>
                 <td><strong>0.28 ± 0.01</strong></td>
                 <td><strong>0.19 ± 0.01</strong></td>
@@ -446,6 +446,28 @@
               </tr>
               <tr class="rank-2">
                 <td><span class="rank-badge silver">2</span></td>
+                <td>Pretrained GIN</td>
+                <td>0.64 ± 0.01</td>
+                <td>0.08 ± 0.04</td>
+                <td>0.13 ± 0.06</td>
+                <td>0.09 ± 0.05</td>
+                <td>0.58 ± 0.04</td>
+                <td>7.14 ± 0.06</td>
+                <td>5.12 ± 0.08</td>
+              </tr>
+              <tr class="rank-3">
+                <td><span class="rank-badge bronze">3</span></td>
+                <td>GIN</td>
+                <td><strong>0.67 ± 0.03</strong></td>
+                <td>0.13 ± 0.12</td>
+                <td>0.17 ± 0.12</td>
+                <td>0.13 ± 0.08</td>
+                <td>0.56 ± 0.07</td>
+                <td><strong>7.13 ± 0.26</strong></td>
+                <td><strong>5.11 ± 0.24</strong></td>
+              </tr>
+              <tr>
+                <td>4</td>
                 <td>ESMC-300M</td>
                 <td>0.60 ± 0.03</td>
                 <td>0.09 ± 0.04</td>
@@ -455,49 +477,27 @@
                 <td>7.21 ± 0.07</td>
                 <td>5.33 ± 0.10</td>
               </tr>
-              <tr class="rank-3">
-                <td><span class="rank-badge bronze">3</span></td>
-                <td>Pretrained GIN</td>
-                <td><strong>0.64 ± 0.01</strong></td>
-                <td>0.06 ± 0.08</td>
-                <td>0.10 ± 0.10</td>
-                <td>0.07 ± 0.07</td>
-                <td>0.55 ± 0.08</td>
-                <td><strong>7.15 ± 0.06</strong></td>
-                <td><strong>5.15 ± 0.11</strong></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Transformer</td>
-                <td>0.59 ± 0.06</td>
-                <td>0.08 ± 0.10</td>
-                <td>0.08 ± 0.13</td>
-                <td>0.05 ± 0.09</td>
-                <td>0.54 ± 0.09</td>
-                <td>7.39 ± 0.43</td>
-                <td>5.44 ± 0.41</td>
-              </tr>
               <tr>
                 <td>5</td>
-                <td>GIN</td>
-                <td>0.63 ± 0.13</td>
-                <td>0.09 ± 0.18</td>
-                <td>0.12 ± 0.20</td>
-                <td>0.09 ± 0.15</td>
-                <td>0.53 ± 0.11</td>
-                <td>7.17 ± 0.28</td>
-                <td>5.17 ± 0.31</td>
+                <td>Transformer</td>
+                <td>0.59 ± 0.06</td>
+                <td>0.09 ± 0.10</td>
+                <td>0.09 ± 0.13</td>
+                <td>0.06 ± 0.09</td>
+                <td>0.55 ± 0.09</td>
+                <td>7.40 ± 0.46</td>
+                <td>5.45 ± 0.44</td>
               </tr>
               <tr>
                 <td>6</td>
                 <td>Morgan FP MLP</td>
                 <td>0.62 ± 0.02</td>
-                <td>−0.04 ± 0.06</td>
-                <td>−0.03 ± 0.05</td>
+                <td>−0.04 ± 0.05</td>
+                <td>−0.02 ± 0.04</td>
                 <td>−0.02 ± 0.03</td>
                 <td>0.53 ± 0.02</td>
-                <td>7.74 ± 0.24</td>
-                <td>5.62 ± 0.14</td>
+                <td>7.79 ± 0.20</td>
+                <td>5.64 ± 0.13</td>
               </tr>
               <tr>
                 <td>7</td>
@@ -534,6 +534,17 @@
               </tr>
               <tr>
                 <td>10</td>
+                <td>DeepLC</td>
+                <td>0.62 ± 0.09</td>
+                <td>−0.02 ± 0.08</td>
+                <td>0.00 ± 0.11</td>
+                <td>0.01 ± 0.08</td>
+                <td>0.46 ± 0.07</td>
+                <td>7.29 ± 0.20</td>
+                <td>5.37 ± 0.25</td>
+              </tr>
+              <tr>
+                <td>11</td>
                 <td>ESMC-600M</td>
                 <td>0.56 ± 0.02</td>
                 <td>−0.03 ± 0.04</td>
@@ -544,31 +555,20 @@
                 <td>5.49 ± 0.05</td>
               </tr>
               <tr>
-                <td>11</td>
-                <td>DeepRT-CapsNet</td>
-                <td>0.43 ± 0.06</td>
-                <td>−0.06 ± 0.07</td>
-                <td>−0.07 ± 0.05</td>
-                <td>−0.05 ± 0.04</td>
-                <td>0.44 ± 0.02</td>
-                <td>7.88 ± 0.40</td>
-                <td>6.01 ± 0.39</td>
-              </tr>
-              <tr>
                 <td>12</td>
-                <td>DeepLC</td>
-                <td>0.60 ± 0.11</td>
-                <td>−0.05 ± 0.12</td>
-                <td>−0.04 ± 0.18</td>
-                <td>−0.02 ± 0.13</td>
-                <td>0.43 ± 0.11</td>
-                <td>7.30 ± 0.19</td>
-                <td>5.40 ± 0.25</td>
+                <td>DeepRT-CapsNet</td>
+                <td>0.43 ± 0.07</td>
+                <td>−0.07 ± 0.07</td>
+                <td>−0.07 ± 0.06</td>
+                <td>−0.05 ± 0.04</td>
+                <td>0.44 ± 0.03</td>
+                <td>7.92 ± 0.40</td>
+                <td>6.05 ± 0.39</td>
               </tr>
               <tr>
                 <td>13</td>
                 <td>PeptideCLM-2-Hybrid</td>
-                <td><strong>0.64 ± 0.01</strong></td>
+                <td>0.64 ± 0.01</td>
                 <td>−0.12 ± 0.05</td>
                 <td>−0.07 ± 0.04</td>
                 <td>−0.04 ± 0.03</td>
@@ -580,8 +580,9 @@
           </table>
         </div>
         <p style="margin-top: .75rem; color: var(--text-muted); font-size: 0.8rem;">
-          – : metric undefined. ChemBERTa-2 models predict no retention difference between the two members of a pair
-          (Δ<em>B̂</em> = 0), so every pair counts as a tie and the Δ-correlations cannot be computed.
+          – : metric undefined. The ChemBERTa tokenizers map matched diastereomers to identical token sequences, yielding
+          identical predictions within each pair. Consequently, pairwise accuracy is zero under the tie rule, ROC-AUC is 0.5,
+          and Δ-correlations are undefined.
         </p>
       </div>
 
@@ -590,7 +591,7 @@
         <h2 class="section-title">Single-Residue Substitution Pairs</h2>
         <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">
           Held-out pairs of equal-length peptides differing at exactly one amino acid position
-          (Hugging Face config <code>point_mutant_pairs</code>). Pairwise accuracy checks whether the predicted retention
+          (Hugging Face config <code>point_mutant_pairs</code>; mean ± std over nine seeds). Pairwise accuracy checks whether the predicted retention
           difference has the same sign as the experimental one. The majority-class accuracy is 0.658; Δ AUC has chance
           performance of 0.50. Ranked by Δ AUC. Bold denotes best per column.
         </p>
@@ -640,8 +641,8 @@
                 <td>0.49 ± 0.01</td>
                 <td>0.35 ± 0.01</td>
                 <td>0.77 ± 0.01</td>
-                <td>7.47 ± 0.07</td>
-                <td>5.10 ± 0.06</td>
+                <td>7.48 ± 0.06</td>
+                <td>5.11 ± 0.05</td>
               </tr>
               <tr class="rank-3">
                 <td><span class="rank-badge bronze">3</span></td>
@@ -673,30 +674,30 @@
                 <td>0.47 ± 0.02</td>
                 <td>0.33 ± 0.02</td>
                 <td>0.77 ± 0.01</td>
-                <td>7.50 ± 0.10</td>
-                <td>5.20 ± 0.12</td>
+                <td>7.49 ± 0.09</td>
+                <td>5.19 ± 0.12</td>
               </tr>
               <tr>
                 <td>6</td>
                 <td>DeepLC</td>
                 <td><strong>0.74 ± 0.01</strong></td>
-                <td>0.41 ± 0.03</td>
-                <td>0.46 ± 0.02</td>
-                <td>0.33 ± 0.02</td>
+                <td>0.42 ± 0.02</td>
+                <td>0.47 ± 0.01</td>
+                <td>0.34 ± 0.01</td>
                 <td>0.77 ± 0.01</td>
-                <td>7.48 ± 0.10</td>
-                <td>5.12 ± 0.10</td>
+                <td>7.46 ± 0.07</td>
+                <td>5.10 ± 0.08</td>
               </tr>
               <tr>
                 <td>7</td>
                 <td>GIN</td>
-                <td>0.73 ± 0.02</td>
-                <td>0.43 ± 0.01</td>
-                <td>0.46 ± 0.02</td>
+                <td>0.72 ± 0.01</td>
+                <td>0.43 ± 0.02</td>
+                <td>0.47 ± 0.02</td>
                 <td>0.34 ± 0.02</td>
                 <td>0.76 ± 0.02</td>
-                <td>7.53 ± 0.13</td>
-                <td>5.07 ± 0.13</td>
+                <td>7.53 ± 0.14</td>
+                <td>5.05 ± 0.12</td>
               </tr>
               <tr>
                 <td>8</td>
@@ -723,13 +724,13 @@
               <tr>
                 <td>10</td>
                 <td>Transformer</td>
-                <td>0.72 ± 0.02</td>
-                <td>0.39 ± 0.03</td>
-                <td>0.45 ± 0.03</td>
-                <td>0.32 ± 0.03</td>
+                <td>0.71 ± 0.01</td>
+                <td>0.39 ± 0.02</td>
+                <td>0.44 ± 0.03</td>
+                <td>0.31 ± 0.02</td>
                 <td>0.75 ± 0.02</td>
-                <td>7.61 ± 0.13</td>
-                <td>5.31 ± 0.15</td>
+                <td>7.64 ± 0.11</td>
+                <td>5.34 ± 0.12</td>
               </tr>
               <tr>
                 <td>11</td>
@@ -756,13 +757,13 @@
               <tr>
                 <td>13</td>
                 <td>Morgan FP MLP</td>
-                <td>0.63 ± 0.02</td>
+                <td>0.63 ± 0.01</td>
                 <td>0.31 ± 0.02</td>
                 <td>0.34 ± 0.02</td>
                 <td>0.23 ± 0.02</td>
                 <td>0.68 ± 0.01</td>
-                <td>8.56 ± 0.24</td>
-                <td>6.29 ± 0.20</td>
+                <td>8.63 ± 0.14</td>
+                <td>6.35 ± 0.12</td>
               </tr>
             </tbody>
           </table>
